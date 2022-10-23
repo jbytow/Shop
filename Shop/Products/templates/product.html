@@ -1,0 +1,12 @@
+    {% extends 'template.html' %}
+
+    {% block product %}
+    {% if product_user %}
+        <h1> {{ product_user.name }}</h1>
+        <p> Producer: {{ product_user.producer }} </p>
+        <p> {{ product_user.description }} </p>
+        <p> {{ product_user.price }} </p>
+    {% else %}
+        <p>There is no product with this id.</p>
+    {% endif %}
+    {% endblock product %}

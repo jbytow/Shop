@@ -1,0 +1,16 @@
+    {% extends 'template.html' %}
+
+    {% block product %}
+
+        {% if category_product %}
+
+            {% for product in category_product %}
+
+                <p><a href = "/product/{{  product.id }}/"> {{ product.name }} </a></p>
+            {% endfor %}
+
+        {% else %}
+
+        {% endif %}
+
+    {% endblock %}

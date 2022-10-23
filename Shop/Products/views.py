@@ -16,11 +16,15 @@ def index(request):
 
 def category(request, id):
     category_user = Category.objects.get(pk=id)
-    return HttpResponse(category_user.name)
+    category_product = Products.objects.filter(category=category_user)
+    categories = Category.objects.all()
+    data = {'category_user': category_user,
+            'category_product': category_product,
+            'categories': categories}
+    return render(request, 'category_product.html', data)
 
 def product(request, id):
     product_user = Products.objects.get(pk=id)
-    text = "<h1>" + str(product_user) + "</h1>" + \
-           "<p>" + str(product_user.description) + "</p>" + \
-           "<p>" + str(product_user.price) + "</p>"
-    return HttpResponse(text)
+    categories = Category.objects.all()
+    data = {'product_user': product_user, 'categories': categories}
+    return render(request, 'product.html', data)

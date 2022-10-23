@@ -5,13 +5,22 @@
     <title>Shop</title>
 </head>
 <body>
+<div>
 <h1>LOGO   SEARCH  LOGOUT</h1>
+</div>
+<div style = "clear:both"></div>
+<div style = "width:200px; float:left">
     Product List:
     {% for cat in categories %}
 
-<p><a href = "category/{{ cat.id }}" > {{ cat.name }} </a> </p>
+<p><a href = "/category/{{ cat.id }}" > {{ cat.name }} </a> </p>
 
-    {% end for %}
+    {% endfor %}
+</div>
+<div style="width:700; float:left">
+    {% block product %} {% endblock product %}
+</div>
+<div style = "clear:both"></div>
 
 </body>
 </html>
