@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 class Producer(models.Model):
     def __str__(self):
@@ -35,4 +36,21 @@ class Products(models.Model):
     class Meta:
         verbose_name = "Product"
         verbose_name_plural = "Products"
+
+class OrderProduct(models.model):
+    def __str__(self):
+        return self.name
+    product = models.ForeignKey(Products, on_delete=models.CASCADE)
+
+class Order(models.Model):
+    def __str__(self):
+        return self.name
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, ondelete=models.CASCADE)
+    product = models.ManyToManyField(OrderProduct)
+    start_date = models.DateTimeField(auto_now_add=True)
+    ordered_date = models.DateTimeField()
+    ordered = models.BooleanField(default=False)
+
+
 
