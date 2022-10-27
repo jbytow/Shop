@@ -20,6 +20,10 @@ from Products.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
+
+    path('register/', register, name="register"),
+    path('login/', login, name="login"),
+
     path('category/<id>/', category, name='category'),
     path('product/<id>/', product, name='product')
 ]
