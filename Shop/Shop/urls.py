@@ -20,10 +20,11 @@ from Accounts.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index),
+    path('', index, name="index"),
 
-    path('register/', register, name="register"),
-    path('login/', login, name="login"),
+    path('register/', register_page, name="register"),
+    path('login/', login_page, name="login"),
+    path('logout/', logout_user, name="logout"),
 
     path('category/<id>/', category, name='category'),
     path('product/<id>/', product, name='product')

@@ -1,14 +1,22 @@
 <h3> Login </h3>
 
-<form method="Post" action="">
-    {% csrf_token %}
-    {{form.as_p}}
 
-    <input type="submit" name="Login">
+
+
+<form method="Post" action="">
+        {% csrf_token %}
+<input type="text" name="username" placeholder="Username..." class="form-control">
+<input type="password" name="password" placeholder="Password..." class="form-control" >
+<input class="btn login_btn" type="submit" value="Login">
 </form>
+
+<!--    <input type="submit" name="Login">-->
+<!--</form>-->
 
 {% for message in messages %}
     <p>{{message}} </p>
 {% endfor %}
 
 {{form.errors}}
+
+Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>

@@ -41,7 +41,6 @@ class Products(models.Model):
         verbose_name = "Product"
         verbose_name_plural = "Products"
 
-
 class OrderProduct(models.Model):
     def __str__(self):
         return self.name
