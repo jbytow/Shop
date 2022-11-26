@@ -51,3 +51,12 @@ def login_page(request):
 def logout_user(request):
     logout(request)
     return redirect('index')
+
+def account_page(request):
+    if request.user.is_authenticated:
+        return redirect('index')
+    else:
+
+
+        context = {}
+        return render(request, 'account.html')
