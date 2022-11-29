@@ -8,6 +8,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 
 from .forms import CreateUserForm
+from .models import Customer
 
 
 def register_page(request):
@@ -18,7 +19,12 @@ def register_page(request):
         if request.method == "POST":
             form = CreateUserForm(request.POST)
             if form.is_valid():
-                form.save()
+                user = form.save()
+
+                Customer.objects.create(
+                    user=user,
+                )
+
                 messages.success(request, 'Account was successfully created')
 
                 return redirect('login')
