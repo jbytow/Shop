@@ -23,7 +23,8 @@ def register_page(request):
 
                 Customer.objects.create(
                     user=user,
-                )
+                    name=user.username,
+                    )
 
                 messages.success(request, 'Account was successfully created')
 
@@ -58,11 +59,11 @@ def logout_user(request):
     logout(request)
     return redirect('index')
 
+
 def account_page(request):
     if request.user.is_authenticated:
         return redirect('index')
     else:
-
 
         context = {}
         return render(request, 'account.html')

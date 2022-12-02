@@ -8,6 +8,7 @@ def index(request):
     data = {'categories': categories}
     return render(request, 'index.html', data)
 
+
 def category(request, id):
     category_user = Category.objects.get(pk=id)
     category_product = Products.objects.filter(category=category_user)
