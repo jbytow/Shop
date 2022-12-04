@@ -42,19 +42,19 @@ class Products(models.Model):
         verbose_name_plural = "Products"
 
 
-class OrderProduct(models.Model):
-    def __str__(self):
-        return self.name
-
-    product = models.ForeignKey(Products, on_delete=models.CASCADE)
-
-
-class Order(models.Model):
-    def __str__(self):
-        return self.name
-
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    product = models.ManyToManyField(OrderProduct)
-    start_date = models.DateTimeField(auto_now_add=True)
-    ordered_date = models.DateTimeField()
-    ordered = models.BooleanField(default=False)
+# class OrderProduct(models.Model):
+#     def __str__(self):
+#         return self.name
+#
+#     product = models.ForeignKey(Products, on_delete=models.CASCADE)
+#
+#
+# class Order(models.Model):
+#     def __str__(self):
+#         return self.name
+#
+#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+#     product = models.ManyToManyField(OrderProduct)
+#     start_date = models.DateTimeField(auto_now_add=True)
+#     ordered_date = models.DateTimeField()
+#     ordered = models.BooleanField(default=False)
