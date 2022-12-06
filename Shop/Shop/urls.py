@@ -17,16 +17,17 @@ from django.contrib import admin
 from django.urls import path
 from Products.views import *
 from Accounts.views import *
+from Orders.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name="index"),
-
     path('register/', register_page, name="register"),
     path('login/', login_page, name="login"),
     path('logout/', logout_user, name="logout"),
     path('account/', account_page, name="account"),
-
+    path('cart/', cart, name="logout"),
+    path('checkout/', checkout, name="account"),
     path('category/<id>/', category, name='category'),
     path('product/<id>/', product, name='product')
 ]
