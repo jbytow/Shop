@@ -9,9 +9,14 @@
 <h1>
     LOGO
     SEARCH
-    <span><a href="{% url 'login' %}">LOGIN</a></span>
+
+    {% if request.user.is_authenticated %}
+
     <span><a href="{% url 'account' %}">ACCOUNT</a></span>
     <span><a href="{% url 'logout' %}">LOGOUT</a></span>
+    {% else %}
+    <span><a href="{% url 'login' %}">LOGIN</a></span>
+    {% endif %}
     </h1>
 </div>
 <div style = "clear:both"></div>
