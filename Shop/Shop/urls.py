@@ -26,8 +26,8 @@ urlpatterns = [
     path('login/', login_page, name="login"),
     path('logout/', logout_user, name="logout"),
     path('account/', account_page, name="account"),
-    path('cart/', cart, name="logout"),
-    path('checkout/', checkout, name="account"),
+    path('cart/', cart, name="cart"),
+    path('checkout/', checkout, name="checkout"),
     path('category/<id>/', category, name='category'),
     path('product/<id>/', product, name='product')
 ]
