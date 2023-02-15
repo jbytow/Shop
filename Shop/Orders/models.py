@@ -17,27 +17,15 @@ class Order(models.Model):
 
     @property
     def get_cart_total(self):
-        orderitems = self.orderitem_set.all()
-        total = sum([item.get_total for item in orderitems])
+        orderproducts = self.orderproduct_set.all()
+        total = sum([product.get_total for product in orderproducts])
         return total
 
     @property
-    def get_cart_items(self):
-        orderitems = self.orderitem_set.all()
-        total = sum([item.quantity for item in orderitems])
+    def get_cart_products(self):
+        orderproducts = self.orderproduct_set.all()
+        total = sum([product.quantity for product in orderproducts])
         return total
-
-        # @property
-    # def get_cart_total(self):
-    #     orderproducts = self.orderproduct_set.all()
-    #     total = sum([product.get_total for product in orderproducts])
-    #     return total
-    #
-    # @property
-    # def get_cart_products(self):
-    #     orderproducts = self.orderproduct_set.all()
-    #     total = sum([product.quantity for product in orderproducts])
-    #     return total
 
 
 class OrderProduct(models.Model):
