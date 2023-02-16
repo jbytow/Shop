@@ -16,7 +16,7 @@ def cart(request):
     else:
         items = []
         order = {'get_cart_total': 0, 'get_cart_products': 0}
-    context = {'items': items}
+    context = {'items': items, 'order': order}
     return render(request, 'cart.html', context)
 
 
@@ -40,6 +40,6 @@ def checkout(request):
     else:
         items = []
         order = {'get_cart_total': 0, 'get_cart_products': 0}
-    context = {'items': items}
+    context = {'items': items, 'order': order}
     return render(request, 'checkout.html', context)
 

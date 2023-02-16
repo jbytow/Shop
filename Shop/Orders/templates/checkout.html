@@ -1,10 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'index.html' %}
 
-</body>
-</html>
+
+{% block product %}
+
+<a href="{% url 'index' %}">&#x2190; Continue Shopping</a>
+<h1>Checkout</h1>
+{% if items %}
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>${{ item.product.price }}</td>
+                    <td>${{ item.get_total }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="3"><strong>Total:</strong></td>
+                <td>${{ order.get_cart_total }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <form method="POST" action="{% url 'checkout' %}">
+        {% csrf_token %}
+        <h2>Shipping Information</h2>
+        <label for="name">Name:</label>
+        <input type="text" name="name" required>
+        <label for="email">Email:</label>
+        <input type="email" name="email" required>
+        <label for="address">Address:</label>
+        <input type="text" name="address" required>
+        <label for="city">City:</label>
+        <input type="text" name="city" required>
+        <label for="state">State:</label>
+        <input type="text" name="state" required>
+        <label for="zip_code">Zip Code:</label>
+        <input type="text" name="zip_code" required>
+        <h2>Payment Information</h2>
+        <label for="card_number">Credit Card Number:</label>
+        <input type="text" name="card_number" required>
+        <label for="expiration_date">Expiration Date:</label>
+        <input type="text" name="expiration_date" required>
+        <label for="cvv">CVV:</label>
+        <input type="text" name="cvv" required>
+        <button type="submit">Place Order</button>
+    </form>
+{% else %}
+    <p>Your cart is empty.</p>
+{% endif %}
+
+{% endblock product %}
