@@ -9,8 +9,8 @@ def index(request):
     return render(request, 'index.html', data)
 
 
-def category(request, id):
-    category_user = Category.objects.get(pk=id)
+def category(request, category_id):
+    category_user = Category.objects.get(pk=category_id)
     category_product = Products.objects.filter(category=category_user)
     categories = Category.objects.all()
     data = {'category_user': category_user,
@@ -19,8 +19,8 @@ def category(request, id):
     return render(request, 'category_product.html', data)
 
 
-def product(request, id):
-    product_user = Products.objects.get(pk=id)
+def product(request, product_id):
+    product_user = Products.objects.get(pk=product_id)
     categories = Category.objects.all()
     data = {'product_user': product_user, 'categories': categories}
     return render(request, 'product.html', data)

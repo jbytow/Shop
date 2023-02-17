@@ -12,6 +12,7 @@
                     <th>Quantity</th>
                     <th>Price</th>
                     <th>Total</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,11 +22,18 @@
                         <td>{{ item.quantity }}</td>
                         <td>${{ item.product.price }}</td>
                         <td>${{ item.get_total }}</td>
+                        <td>
+                            <form action="{% url 'remove_from_cart' item.product.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit">Remove from Cart</button>
+                            </form>
+                        </td>
                     </tr>
                 {% endfor %}
                 <tr>
                     <td colspan="3"><strong>Total:</strong></td>
                     <td>${{ order.get_cart_total }}</td>
+                    <td></td>
                 </tr>
             </tbody>
         </table>

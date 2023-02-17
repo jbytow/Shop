@@ -6,6 +6,11 @@
         <p> Producer: {{ product_user.producer }} </p>
         <p> {{ product_user.description }} </p>
         <p> {{ product_user.price }} </p>
+
+        <form method="post" action="{% url 'add_to_cart' product_user.id%}">
+        {% csrf_token %}
+        <input type="submit" value="Add to the cart">
+        </form>
     {% else %}
         <p>There is no product with this id.</p>
     {% endif %}
