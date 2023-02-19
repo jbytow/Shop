@@ -62,8 +62,9 @@ def logout_user(request):
 
 def account_page(request):
     if request.user.is_authenticated:
-        return redirect('index')
+        return redirect('login')
     else:
 
         context = {}
         return render(request, 'account.html')
+
