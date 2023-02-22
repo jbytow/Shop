@@ -1,1 +1,45 @@
     {% extends 'index.html' %}
+
+    {% block product %}
+ <div class="col-md-6">
+        <h2>My Account</h2>
+        <form method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            {{ form.address.label_tag }}
+            {{ form.address }}
+          </div>
+          <button type="submit" class="btn btn-primary">Save Address</button>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <h2>My Orders</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Date Ordered</th>
+              <th>Order Total</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in orders %}
+              <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.date_ordered }}</td>
+                <td>{{ order.get_cart_total }}</td>
+                <td>{% if order.complete %}Complete{% else %}Pending{% endif %}</td>
+              </tr>
+            {% empty %}
+              <tr>
+                <td colspan="4">You have no orders.</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+{% endblock product %}

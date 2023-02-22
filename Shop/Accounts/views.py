@@ -7,8 +7,9 @@ from django.contrib.auth import login, logout
 
 from django.contrib.auth.decorators import login_required
 
-from .forms import CreateUserForm
+from .forms import CreateUserForm, AddressForm
 from .models import Customer
+from Orders.models import Order
 
 
 def register_page(request):
@@ -60,11 +61,25 @@ def logout_user(request):
     return redirect('index')
 
 
-def account_page(request):
-    if request.user.is_authenticated:
-        return redirect('login')
-    else:
+# def account_page(request):
+#     if request.user.is_authenticated:
+#         return redirect('login')
+#     else:
+#
+#         context = {}
+#         return render(request, 'account.html')
 
-        context = {}
-        return render(request, 'account.html')
+
+@login_required
+def account_page(request):
+    orders = Order.objects.filter(customer=request.user.customer)
+    if request.method == 'POST':
+        form = AddressForm(request.POST, instance=request.user.customer.address)
+        if form.is_valid():
+            form.save()
+            return redirect('account')
+    else:
+        form = AddressForm(instance=request.user.customer.address)
+    return render(request, 'account.html', {'orders': orders, 'form': form})
+
 
