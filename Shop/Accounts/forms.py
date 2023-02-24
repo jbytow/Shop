@@ -13,7 +13,7 @@ class CreateUserForm(UserCreationForm):
 class AddressForm(forms.ModelForm):
     class Meta:
         model = Customer
-        fields = '__all__'
+        exclude = ['user']
 
     address = forms.CharField(
         label='Address',

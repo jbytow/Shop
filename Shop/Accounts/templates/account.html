@@ -3,12 +3,21 @@
     {% block product %}
  <div class="col-md-6">
         <h2>My Account</h2>
+    {% if messages %}
+        <div class="alert alert-success">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
         <form method="post">
           {% csrf_token %}
-          <div class="form-group">
-            {{ form.address.label_tag }}
-            {{ form.address }}
-          </div>
+    {% for field in form %}
+      <div class="form-group">
+        {{ field.label_tag }}
+        {{ field }}
+      </div>
+    {% endfor %}
           <button type="submit" class="btn btn-primary">Save Address</button>
         </form>
       </div>

@@ -73,13 +73,15 @@ def logout_user(request):
 @login_required
 def account_page(request):
     orders = Order.objects.filter(customer=request.user.customer)
+    customer = request.user.customer
     if request.method == 'POST':
-        form = AddressForm(request.POST, instance=request.user.customer.address)
+        form = AddressForm(request.POST, instance=customer)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Address has been updated successfully!')
             return redirect('account')
     else:
-        form = AddressForm(instance=request.user.customer.address)
+        form = AddressForm(instance=customer)
     return render(request, 'account.html', {'orders': orders, 'form': form})
 
 

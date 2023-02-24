@@ -22,7 +22,7 @@
 </div>
 <div style = "clear:both"></div>
 <div style = "width:200px; float:left">
-    <h3>Categories:</h3>
+    <h3><a href="{% url 'index' %}">Categories:</a></h3>
     {% for cat in categories %}
 
 <p><a href = "/category/{{ cat.id }}" > {{ cat.name }} </a> </p>
