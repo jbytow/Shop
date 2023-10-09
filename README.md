@@ -1,5 +1,5 @@
 # Django E-commerce
-Basic E-commerce website to learn Django Framework. Allows product browsing, account creation, address saving, adding products to the cart, and placing orders to addresses.
+Basic E-commerce website to start going through Django Framework. Allows product browsing, account creation, address saving, adding products to the cart, and placing orders to addresses. 
 
 
 **Features**
