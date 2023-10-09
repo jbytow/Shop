@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     # my apps
     'Products',
     'Accounts',
-    'Orders'
+    'Orders',
 
 ]
 
